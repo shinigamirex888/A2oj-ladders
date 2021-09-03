@@ -8,21 +8,10 @@ int main(){
     while(t--){
         ll p,a,b,c;
         cin>>p>>a>>b>>c;
-        ll ra,rb,rc;
-        ra=a-(p%a);
-        if(ra==a){
-            ra=0;
-        }
-        rb=b-(p%b);
-        if(rb==b){
-            rb=0;
-        }
-        rc=c-(p%c);
-        if(rc==c){
-            rc=0;
-        }
-        ll ans=min(ra,min(rb,rc));
-        cout<<ans<<endl;
+       ll x=((p+a-1)/a);
+       ll y=((p+b-1)/b);
+       ll z=((p+c-1)/c);
+       cout<<min({(x*a)-p,(y*b)-p,(z*c)-p})<<endl;
 
     }
 
