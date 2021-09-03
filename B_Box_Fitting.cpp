@@ -86,36 +86,33 @@ bool isPal(string s)
     }
     return true;
 }
-
+ll ans = 0;	
+ 
+ll cnt[3000005];
+ 
 void solution()
 {
-    ll n, w;
-    cin >> n >> w;
-    multiset<ll> ms;
-    for (ll i = 0; i < n; i++)
-    {
-        ll x;
-        cin >> x;
-        ms.insert(x);
-    }
-    int height = 1, left = w;
-    while (!ms.empty())
-    {
-        auto y = ms.upper_bound(left);
-        if (y == ms.begin())
-        {
-            left = w;
-            height++;
-        }
-        else
-        {
-            y--;
-            ll value = *y;
-            left -= value;
-            ms.erase(y);
-        }
-    }
-    cout << height << endl;
+   ll w,n,x;
+	cin >> n >> w;
+	
+	for (ll i = 0; i < n; i++) {
+		cin >> x;
+		++cnt[x];
+	}
+	
+	ll ans = 0;
+	while (n > 0) {
+		ll cur = w;
+		for (ll i = (1 << 20); i > 0; i >>= 1) {
+			while (cnt[i] > 0 && cur >= i) {
+				--cnt[i];
+				--n;
+				cur -= i;
+			}
+		}
+		++ans;	
+	}
+	cout << ans << '\n';
 }
 
 int main()

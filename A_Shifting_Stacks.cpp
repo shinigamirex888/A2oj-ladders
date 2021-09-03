@@ -10,22 +10,18 @@ using namespace std;
 void solution(){
     int n;
     cin>>n;
-    vector<ll>arr(n);
+    vector<ll>arr(n+5);
     for(int i=0;i<n;i++) cin>>arr[i];
-    ll extra=0;
-    for(ll i=0;i<n;i++){
+    for(int i=0;i<n;i++){
         if(arr[i]>=i){
-            extra+=(arr[i]-i);
-        }
-        else if(arr[i]+extra>=i){
-            extra-=(i-arr[i]);
-        }
-        else{
-            cout<<"NO"<<"\n";
+            arr[i+1]+=arr[i]-i;
+            arr[i]=i;
+        }else{
+            cout<<"NO"<<endl;
             return;
         }
     }
-    cout<<"YES"<<"\n";
+    cout<<"YES"<<endl;
 }
                 
 int main(){
